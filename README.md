@@ -111,6 +111,31 @@ Right, now thats out of the way lets get started!!
      
        - you can now stop and start the nodes when you want. 
        - 
+       - you can delete the volumes. Not this will clear all blockchain download and volumes will get recreated once you start the compose files. 
+       
+         - docker volume rm  (and volume name) . the  volume names are defined in the yaml file. 
+         - volumes:
+              node-mainnet-RELAY-db:
+              node-testnet-RELAY-db:
+              node-mainnet-RELAY-ipc:
+              node-testnet-RELAY-ipc:
+              node-mainnet-BP-db:
+              node-testnet-BP-db:
+              node-mainnet-BP-ipc:
+              node-testnet-BP-ipc:
+
+
+### Post work
+- Edit the topology files by using the IP adresses of the nodes defined in the docker yaml files. 
+-  e.g BP on mainnet will be 192.168.33.13  etc
+-  ensure you also checkout the documents credited above . 
+
+
+
+
+
+
+
   
 
   
