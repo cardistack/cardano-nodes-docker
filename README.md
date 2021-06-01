@@ -56,4 +56,15 @@ Right, now thats out of the way lets get started!!
 
 - #### Docker-compose main file
  
-        - Docker-compose.yml 
+        - Docker-compose.yml ( this file contains the settings that will be used to build the nodes using version 1.27.0). Almost all the settings are 
+          autmatically passed using variables so you dont really have to change anythng in this file. However, if you want a node version other the 1.27 edit the           section image: nessusio/cardano-node:1.27.0 to reflect.
+        
+        - i have manually defined the networks because i find its easier to use ip addresses in the topololy files to get the nodes communicating.
+          
+          
+### Set
+- ### Import the variables into the environment 
+        
+       -  CONTEXT=$PWD NETWORK=testnet         (and enter . change to mainnet if yoou want to build for mainnet etc)
+       -  source scripts/export_env.sh         ( this should load the enviroment variables into the current shell)
+       -  test you have the right network imported by typing, echo $NETWORK. this should echo the network you are connected to
