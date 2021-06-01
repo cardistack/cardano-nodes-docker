@@ -60,6 +60,9 @@ Right, now thats out of the way lets get started!!
           autmatically passed using variables so you dont really have to change anythng in this file. However, if you want a node version other the 1.27 edit the           section image: nessusio/cardano-node:1.27.0 to reflect.
         
         - i have manually defined the networks because i find its easier to use ip addresses in the topololy files to get the nodes communicating.
+
+        - TIP: on the first run till the blockchain is synced on both nodes, leave the environmental variable  CARDANO_BLOCK_PRODUCER=false under the cardano-               node-BP: section .this is because you will not have the kes and vrf keys generated. if you do already have them, then you can place them under the                 nodekeys folder and modify the compose file accordinly. If not set both to sections to off , wait for the blockchain to sync, use cardano-cli in the               nodes to generate the keys, stop the nodes, then set the  CARDANO_BLOCK_PRODUCER=true under the ardano-node-BP section.
+
           
           
 ### Set
@@ -68,3 +71,13 @@ Right, now thats out of the way lets get started!!
        -  CONTEXT=$PWD NETWORK=testnet         (and enter . change to mainnet if yoou want to build for mainnet etc)
        -  source scripts/export_env.sh         ( this should load the enviroment variables into the current shell)
        -  test you have the right network imported by typing, echo $NETWORK. this should echo the network you are connected to
+
+
+
+### Go 
+- ### Spin up the nodes.
+       
+       - docker-compose up -d && docker-compose logs -f
+       - if all goes well the nodes will be created and automatically started . just wait for the blockchain to sync
+       - ![image](https://user-images.githubusercontent.com/83215574/120376496-df1dd000-c313-11eb-9264-ddd7c1404749.png)
+  
