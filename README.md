@@ -17,13 +17,17 @@ Right, now thats out of the way lets get started!!
 
 ### Scenario:
 
-- Build 1 x docker block producing node
+- Build 1 x docker block producing node version 1.27.0
 
-- Build 1 x docker relay node
+- Build 1 x docker relay node version 1.27.0
 
-- create a docker network to allow nodes to communicate
+- Create a docker network to allow nodes to communicate
 
-- manually update topoloy files to get nodes talking
+- Manually update topoloy files to get nodes communicating
+
+- Create docker volumes that will be mounted in the docker containers when started
+
+- Download the docker images
 
 ### Prerequisites
 
@@ -33,4 +37,23 @@ Right, now thats out of the way lets get started!!
 
 
 ### Start
-- first clone thos reposotory and cd into the directory. 
+- first clone thos reposotory and cd into the directory. got clone https://github.com/cardistack/cardano-nodes-docker.git && cardano-nodes-docker
+- #### Directory structure 
+      
+      - config
+
+        - bin ( store any executables you want in here. Currently not used)
+        
+        - logs (if you decide to log to files insted of console (default)).
+        
+        - network(contains the topology files download from IOHK for the networks mentioned https://hydra.iohk.io/build/5416636/download/1/index.html into   
+          folders. You can manually modify these files like you would in a real node installation.
+        
+        - nodekeys (use this folder for your Block producer keys . Kes skey etc . ### WARNING!! this is ok for testnet . For mainnet dont store any private keys             here. If you do for mainnet and get hacked you will lose funds. 
+        
+      - scripts 
+        - export_env.sh  (contains some environmental variables. Defaults are fine but you can edit to suite your needs)
+
+- #### Docker-compose main file
+ 
+        - Docker-compose.yml 
