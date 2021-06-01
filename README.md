@@ -15,7 +15,7 @@ Another massive shout out to (tdiesler?). who has put together this wonderful gu
 
 Right, now thats out of the way lets get started!!
 
-### scenario:
+### Scenario:
 
 - Build 1 x docker block producing node
 
@@ -25,3 +25,12 @@ Right, now thats out of the way lets get started!!
 
 - manually update topoloy files to get nodes talking
 
+### Prerequisites
+
+- Install docker if not already installed for you distribution.  [docker](https://docs.docker.com/engine/install/)
+- install docker-compose if not already installed.  [docker-compose](https://docs.docker.com/compose/install/)
+- ensure you have adequate disk space to download and store the cardano blockchain data, 10Gb +
+
+
+### Start
+- first clone thos reposotory and cd into the directory. 
