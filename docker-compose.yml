@@ -1,0 +1,88 @@
+version: "3.5"
+networks:
+  cardLan:
+    ipam:
+      config:
+        - subnet: ${SUBNET}.0/24
+services:
+  cardano-node-RELAY:
+    container_name: cardano-node-${NETWORK}-RELAY
+    image: nessusio/cardano-node:1.27.0
+    networks:
+         cardLan:
+              ipv4_address: ${SUBNET}.12
+    command: [
+      "run"
+    ]
+    environment:
+     - CARDANO_NODE_SOCKET_PATH=/ipc/node.socket
+     - CARDANO_CONFIG=/config/${NETWORK}-config.json
+     - CARDANO_TOPOLOGY=/config/${NETWORK}-topology.json
+     - CARDANO_BIND_ADDR=0.0.0.0
+     - CARDANO_PORT=${RELAY_PORT}
+     - CARDANO_NETWORK=${NETWORK}
+     - CARDANO_DATABASE_PATH=/data/db
+     - CARDANO_SOCKET_PATH=/ipc/node.socket
+     - CARDANO_LOG_DIR=/config/logs/${NETWORK}/relay
+     - CARDANO_PUBLIC_IP=
+     - CARDANO_CUSTOM_PEERS=
+     - CARDANO_UPDATE_TOPOLOGY=false
+     - CARDANO_BLOCK_PRODUCER=false
+     - CARDANO_SHELLEY_KES_KEY=
+     - CARDANO_SHELLEY_VRF_KEY=
+     - CARDANO_SHELLEY_OPERATIONAL_CERTIFICATE=
+
+    volumes:
+      - ./config/network/${NETWORK:-testnet}/cardano-node:/config
+      - ./config/network/${NETWORK:-testnet}/genesis:/genesis
+      - node-${NETWORK:-testnet}-RELAY-db:/data/db
+      - node-${NETWORK:-testnet}-RELAY-ipc:/ipc
+    ports:
+      - ${RELAY_PORT}:${RELAY_PORT}
+    restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "400k"
+        max-file: "20"
+  cardano-node-BP:
+    container_name: cardano-node-${NETWORK}-BP
+    image: nessusio/cardano-node:1.27.0
+    networks:
+            cardLan:
+                ipv4_address: ${SUBNET}.13
+    command: [
+      "run"
+    ]
+    environment:
+     - CARDANO_NODE_SOCKET_PATH=/ipc/node.socket
+     - CARDANO_CONFIG=/config/${NETWORK}-config.json
+     - CARDANO_TOPOLOGY=/config/${NETWORK}-topology.json
+     - CARDANO_BIND_ADDR=0.0.0.0
+     - CARDANO_PORT=${BP_PORT}
+     - CARDANO_NETWORK=${NETWORK}
+     - CARDANO_DATABASE_PATH=/data/db
+     - CARDANO_SOCKET_PATH=/ipc/node.socket
+     - CARDANO_LOG_DIR=/config/logs/${NETWORK}/bp
+     - CARDANO_UPDATE_TOPOLOGY=false
+     - CARDANO_BLOCK_PRODUCER=false
+     - CARDANO_SHELLEY_KES_KEY=/config/nodekeys/kes.skey
+     - CARDANO_SHELLEY_VRF_KEY=/config/nodekeys/vrf.skey
+     - CARDANO_SHELLEY_OPERATIONAL_CERTIFICATE=/config/nodekeys/node.cert
+    volumes:
+      - ./config/network/${NETWORK:-testnet}/cardano-node:/config
+      - ./config/network/${NETWORK:-testnet}/genesis:/genesis
+      - node-${NETWORK:-testnet}-BP-db:/data/db
+      - node-${NETWORK:-testnet}-BP-ipc:/ipc
+    ports:
+      - ${BP_PORT}:${BP_PORT}
+
+volumes:
+  node-mainnet-RELAY-db:
+  node-testnet-RELAY-db:
+  node-mainnet-RELAY-ipc:
+  node-testnet-RELAY-ipc:
+  node-mainnet-BP-db:
+  node-testnet-BP-db:
+  node-mainnet-BP-ipc:
+  node-testnet-BP-ipc:
