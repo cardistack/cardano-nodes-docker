@@ -131,6 +131,12 @@ Right, now thats out of the way lets get started!!
 -  ensure you also checkout the documents credited above . 
 
 
+# Please help support small pools by delegating to 
+
+[CARDISTACK (CSK)](https://adapools.org/pool/f510658bb80e3657f5b20b3f796d219552b57622e0208dd287ba620f)
+
+
+
 
 
 
