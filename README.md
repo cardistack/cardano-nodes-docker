@@ -78,6 +78,39 @@ Right, now thats out of the way lets get started!!
 - ### Spin up the nodes.
        
        - docker-compose up -d && docker-compose logs -f
+       
        - if all goes well the nodes will be created and automatically started . just wait for the blockchain to sync
-       - ![image](https://user-images.githubusercontent.com/83215574/120376496-df1dd000-c313-11eb-9264-ddd7c1404749.png)
+
+     ![dockerstart](https://user-images.githubusercontent.com/83215574/120376705-19876d00-c314-11eb-9d65-6278f81cb159.png)
+     
+       - you can exit out of console logging by pressing ctrl + c .  reconnect anytime, docker-compose logs -f
+       
+       - docker ps (will show you list of running nodes) 
+    
+    ![image](https://user-images.githubusercontent.com/83215574/120377118-9d415980-c314-11eb-94f4-c495ae967bcf.png)
+     
+       -  e.g  connect to the BP by typing  docker exec -it cardano-node-testnet-BP /bin/bash
+       
+    ![image](https://user-images.githubusercontent.com/83215574/120377462-0f19a300-c315-11eb-9ee2-c9d1b9554fbf.png)
+    ![image](https://user-images.githubusercontent.com/83215574/120378044-d5956780-c315-11eb-96cd-19aeb4437780.png)
+    
+       - launch gLiview
+    ![image](https://user-images.githubusercontent.com/83215574/120379216-599c1f00-c317-11eb-8d6a-1d039c1c19ef.png)
+
+       - after blockchain is synced, change into the nodekeys directory and create the necessary keys for a block producer paying attention to the naming.
+       - [How to create stakepool keys etc](https://docs.cardano.org/projects/cardano-node/en/latest/stake-pool-operations/keys_and_addresses.html)
+       - once you have the keys, you can the shutdown the nodes and update the docker-compose.yml file by setting the nvironmental variable                                CARDANO_BLOCK_PRODUCER=true. start the nodes as before
+
+
+### Cool Down
+- Stopping the nodes.
+       
+       -  docker-compose down ( This will remove the containes and networks but not delete the docker volumes)
+       
+     ![image](https://user-images.githubusercontent.com/83215574/120378926-f7431e80-c316-11eb-8c9c-635caea95633.png)
+     
+       - you can now stop and start the nodes when you want. 
+       - 
+  
+
   
