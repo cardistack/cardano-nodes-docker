@@ -1,4 +1,4 @@
-# cardano-nodes-docker
+# cardano-nodes-docker **UPDATED TO SUPPORT ALONZO**
 Run BP and Relay nodes in Docker using compose files. Spin up environment in under a Minute.
 
 # Intro
