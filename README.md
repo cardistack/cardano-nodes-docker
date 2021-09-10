@@ -17,9 +17,9 @@ Right, now thats out of the way lets get started!!
 
 ### Scenario:
 
-- Build 1 x docker block producing node version 1.27.0
+- Build 1 x docker block producing node version 1.27.0 updated 1.29.0
 
-- Build 1 x docker relay node version 1.27.0
+- Build 1 x docker relay node version 1.27.0 updated 1.29.0
 
 - Create a docker network to allow nodes to communicate
 
